@@ -417,14 +417,11 @@ a { color: var(--primary); text-decoration: none; }
 .side-menu-item.active-theme { background: var(--primary-light); color: var(--primary); font-weight: 700; }
 .theme-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--border); }
 .side-menu-divider { height: 1px; background: var(--border); margin: 6px 0; }
-
 @media (min-width: 768px) { .editor-footer .btn-primary { min-width: 180px; } }
 </style>
-
 </head>
 <body>
 <div id="app">
-
   <header class="header">
     <div class="header-logo">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -741,7 +738,6 @@ a { color: var(--primary); text-decoration: none; }
     </div>
   </div>
 </div>
-
 <!- ============================================
            Proprietary Software
            Copyright © 2026 Rev. Don Victor, PhD.
@@ -858,15 +854,11 @@ a { color: var(--primary); text-decoration: none; }
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
-// ============================================
-// DV Ministry - Universal Console Warning
-// ============================================
+// DV Ministry - Console Warning
 (function() {
     'use strict';
-
     if (window.dv_copyright_logged) return;
     window.dv_copyright_logged = true;
-
     console.log(
       `%c============================================
            Proprietary Software
@@ -2230,7 +2222,6 @@ init();
   cursor:pointer;font-family:'Roboto',system-ui,sans-serif;
   display:flex;align-items:center;justify-content:center;gap:8px;
 }
-
 /* Toast */
 #dv-sf-toasts{
   position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
@@ -2267,7 +2258,6 @@ init();
       </button>
     </div>
   </div>
-
   <!-- URL Bar -->
   <div id="dv-sf-urlbar">
     <input type="text" id="dv-sf-url-input" placeholder="https://example.com" autocomplete="off" spellcheck="false" inputmode="url">
@@ -2370,14 +2360,11 @@ init();
 
 <script>
 /* ================================================================
-   DV SOURCE FETCHER WIDGET
-   © Biblefirm | Rev. Dr. Chris Johnson, PhD | CEMLCA
+   © Rev. Don Victor, PhD 
    Unauthorized reproduction or redistribution prohibited.
    ================================================================ */
 const dvSF = (function () {
   'use strict';
-
-  /* ── DOM ──────────────────────────────────────────────────── */
   const panel      = document.getElementById('dv-sf-overlay');
   const urlInput   = document.getElementById('dv-sf-url-input');
   const editor     = document.getElementById('dv-sf-editor');
@@ -2453,8 +2440,6 @@ const dvSF = (function () {
       no.onclick  = () => { t.remove(); res(false); };
     });
   }
-
-  /* ── Open / Close ─────────────────────────────────────────── */
   function open() {
     panel.classList.add('dv-sf-open');
     document.body.style.overflow = 'hidden';
@@ -2467,7 +2452,6 @@ const dvSF = (function () {
   }
   document.getElementById('dv-sf-close-btn').onclick = close;
 
-  /* ── Library ──────────────────────────────────────────────── */
   function openLib()  { libSide.classList.add('dv-sf-show'); libOver.classList.add('dv-sf-show'); }
   function closeLib() { libSide.classList.remove('dv-sf-show'); libOver.classList.remove('dv-sf-show'); }
   document.getElementById('dv-sf-lib-btn').onclick = openLib;
@@ -2502,7 +2486,6 @@ const dvSF = (function () {
     };
   }
 
-  /* ── Editor helpers ───────────────────────────────────────── */
   function setVal(v) { editor.value = v; lastVal = v; updateGutter(); triggerAuto(); }
   function pushUndo(v) { undoStack.push(v); if (undoStack.length > 100) undoStack.shift(); }
 
@@ -2533,7 +2516,6 @@ const dvSF = (function () {
     } catch(e) {}
   }
 
-  /* ── Fetch ────────────────────────────────────────────────── */
   document.getElementById('dv-sf-fetch-btn').onclick = async () => {
     let url = urlInput.value.trim();
     if (!url) { toast('Enter a URL first.', 'warn'); return; }
@@ -2549,7 +2531,6 @@ const dvSF = (function () {
     } catch(err) { setVal(''); toast('Fetch failed: ' + String(err.message).slice(0, 80), 'error'); }
   };
 
-  /* ── Save dialog ──────────────────────────────────────────── */
   function updatePreview() { prevLbl.textContent = (fName.value.trim() || 'my-file') + fExt.value; }
   fName.addEventListener('input', updatePreview);
   fExt.addEventListener('change', updatePreview);
@@ -2686,9 +2667,7 @@ const dvSF = (function () {
 
   return { open, close };
 })();
-
 </script>
-
 <div id="vsw-root">
   <div id="vsw-panel">
     <div id="vsw-header">
@@ -3155,7 +3134,6 @@ body { font-size: 1.2rem; line-height: 1.5; }
     requestAnimationFrame(() => t.classList.add('show'));
     setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 220); }, 2800);
   }
-
   function vswConfirm(message) {
     return new Promise((resolve) => {
       const t = document.createElement('div');
@@ -3630,7 +3608,6 @@ body { font-size: 1.2rem; line-height: 1.5; }
 <button class="devtools-storage-btn" style="padding:14px 24px; font-size:1.1rem;" onclick="openFullScreenEditor()">Launch Full-Screen Editor</button>
 </div>
 </div>
-<!-- Storage -->
 <div class="devtools-panel" id="panel-storage">
 <div class="devtools-section-title">localStorage</div>
 <textarea id="devtools-storage-textarea" readonly></textarea>
@@ -3651,8 +3628,6 @@ body { font-size: 1.2rem; line-height: 1.5; }
 <input type="file" id="import-state-file" accept=".json" style="max-width: 200px; padding: 4px;" onchange="importState(event)">
 </div>
 </div>
-
-<!-- Cookies -->
 <div class="devtools-panel" id="panel-cookies">
 <button class="devtools-clear-btn" onclick="refreshCookies()">Refresh</button>
 <div class="devtools-inline-row" style="margin-top:6px;">
@@ -3746,9 +3721,7 @@ body { font-size: 1.2rem; line-height: 1.5; }
 </div>
 <textarea id="live-html-textarea" oninput="saveEditorState()" placeholder="Code canvas is ready..." style="flex:1; width:100%; border:none; padding:14px; font-family:monospace; font-size:0.9rem; resize:none; background:#fff; color:#1c1e21; box-sizing:border-box; outline:none; margin:0;"></textarea>
 </div>
-
 <script>
-
 (function(){
 if(window.__devtoolsInitedV3_1)return;window.__devtoolsInitedV3_1=true;
 var panelVisible=false,securityCount=0,snippetHistory=[];
@@ -3783,7 +3756,6 @@ tab.appendChild(badge);
 badge.textContent=securityCount;
 }else if(badge)badge.remove();
 }
-
 function addLogItem(containerId,type,tag,message,detail){
 var container=document.getElementById(containerId);
 if(!container)return;
@@ -3796,8 +3768,6 @@ container.prepend(item);
 while(container.children.length>200)container.lastChild.remove();
 return item;
 }
-
-// Console
 window.addConsoleLog=function(level,message,detail){addLogItem('console-logs',level,level.toUpperCase(),message,detail);};
 var origLog=console.log,origWarn=console.warn,origError=console.error,origInfo=console.info;
 console.log=function(){origLog.apply(console,arguments);window.addConsoleLog('log',Array.from(arguments).join(' '));};
@@ -3806,9 +3776,7 @@ console.error=function(){origError.apply(console,arguments);window.addConsoleLog
 console.info=function(){origInfo.apply(console,arguments);window.addConsoleLog('log',Array.from(arguments).join(' '));};
 window.addEventListener('error',function(e){window.addConsoleLog('error',e.message,e.filename+':'+e.lineno);});
 window.addEventListener('unhandledrejection',function(e){window.addConsoleLog('error','Unhandled Promise',e.reason&&e.reason.message||String(e.reason));});
-// CSP
 document.addEventListener('securitypolicyviolation',function(e){addLogItem('csp-logs','csp','CSP Violation','Blocked: '+e.blockedURI,'Directive: '+e.violatedDirective+' | Doc: '+e.documentURI);});
-// Network - Fetch
 var origFetch=window.fetch;
 window.fetch=function(url,options){
 var start=performance.now();
@@ -3825,7 +3793,6 @@ addLogItem('network-logs','error','FETCH FAIL',method+' '+urlStr.substring(0,80)
 throw err;
 });
 };
-// Network - XHR
 var origXHROpen=XMLHttpRequest.prototype.open;
 XMLHttpRequest.prototype.open=function(method,url){
 this.__devtools_method=method;this.__devtools_url=url;this.__devtools_start=performance.now();
@@ -3836,7 +3803,6 @@ addLogItem('network-logs','network','XHR '+self.status,self.__devtools_method+' 
 });
 return origXHROpen.apply(this,arguments);
 };
-// WebSocket
 var OrigWebSocket=window.WebSocket;
 window.WebSocket=function(url,protocols){
 var ws=new OrigWebSocket(url,protocols);
@@ -3866,7 +3832,6 @@ var origOpen=window.open;window.open=function(url){logSecurity('window.open()',(
 var origCreateElement=document.createElement;document.createElement=function(tag,options){var el=origCreateElement.call(this,tag,options);if(tag.toLowerCase()==='iframe'){logSecurity('iframe created','Dynamic iframe element','MEDIUM');}return el;};
 setInterval(function(){var size=JSON.stringify(localStorage).length;if(size>500000)logSecurity('Storage threshold','localStorage: '+Math.round(size/1024)+'KB','LOW');},30000);
 
-// Elements & True Full-Screen Editor
 var editorHistory=[],editorStep=-1;
 window.openFullScreenEditor=function(){document.getElementById('fullscreen-editor-modal').style.display='flex';};
 window.closeFullScreenEditor=function(){document.getElementById('fullscreen-editor-modal').style.display='none';};
@@ -3876,7 +3841,6 @@ window.redoEditor=function(){if(editorStep<editorHistory.length-1){editorStep++;
 window.loadPageSource=function(){var clone=document.body.cloneNode(true);var devPanel=clone.querySelector('#devtools-panel');if(devPanel)devPanel.remove();var fullModal=clone.querySelector('#fullscreen-editor-modal');if(fullModal)fullModal.remove();document.getElementById('live-html-textarea').value=clone.innerHTML.trim();window.saveEditorState();window.addConsoleLog('log','Page source loaded.');};
 window.injectHTML=function(){var code=document.getElementById('live-html-textarea').value;if(!code)return;var playground=document.getElementById('devtools-playground-area');if(!playground){playground=document.createElement('div');playground.id='devtools-playground-area';document.body.prepend(playground);}playground.innerHTML=code;window.addConsoleLog('warn','Custom code injected!');window.closeFullScreenEditor();toggleDevTools();};
 
-// Storage & Time Machine
 window.refreshStorage=function(){var ta=document.getElementById('devtools-storage-textarea');if(ta){var d={};for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);d[k]=localStorage.getItem(k);}ta.value=JSON.stringify(d,null,2)||'{}';}};
 window.editStorage=function(){var ta=document.getElementById('devtools-storage-textarea');ta.readOnly=!ta.readOnly;if(!ta.readOnly){ta.focus();ta.style.border='2px solid #1877F2';}else{ta.style.border='1px solid #dadde1';try{var d=JSON.parse(ta.value);localStorage.clear();for(var k in d)localStorage.setItem(k,d[k]);window.addConsoleLog('log','localStorage updated');}catch(e){window.addConsoleLog('error','Invalid JSON',e.message);}}};
 window.clearStorage=function(){localStorage.clear();refreshStorage();window.addConsoleLog('warn','localStorage cleared');};
@@ -4048,13 +4012,11 @@ navigator.serviceWorker.getRegistrations().then(function(regs){regs.forEach(func
 window.updateSW=function(scope){
 navigator.serviceWorker.getRegistrations().then(function(regs){regs.forEach(function(r){if(r.scope===scope&&r.active)r.update().then(function(){window.addConsoleLog('log','SW update triggered',scope);refreshSW();});});});
 };
-// Performance & Profiler
 window.refreshPerf=function(){var el=document.getElementById('perf-info');if(!el)return;var t=performance.timing;var entries=performance.getEntriesByType('resource');var nav=performance.getEntriesByType('navigation')[0];var h='';if(nav){h+='<div class="devtools-log-item log"><div class="devtools-log-tag">Navigation</div><div>Type: '+nav.type+' | DomComplete: '+Math.round(nav.domComplete)+'ms | LoadEventEnd: '+Math.round(nav.loadEventEnd)+'ms | Transfer: '+Math.round(nav.transferSize/1024)+'KB</div></div>';}h+='<div class="devtools-log-item log"><div class="devtools-log-tag">Page Load</div><div>DOM Ready: '+(t.domContentLoadedEventEnd-t.navigationStart)+'ms | Load Complete: '+(t.loadEventEnd-t.navigationStart)+'ms</div></div>';h+='<div class="devtools-log-item log"><div class="devtools-log-tag">Resources ('+entries.length+')</div>';entries.slice(0,30).forEach(function(e){var size=e.transferSize?Math.round(e.transferSize/1024)+'KB':'cached';h+='<div style="font-size:0.7rem;padding:2px 0">'+e.initiatorType+' '+e.name.substring(0,50)+' - '+Math.round(e.duration)+'ms ('+size+')</div>';});h+='</div>';el.innerHTML=h;};
 var telemetryActive=false,lastFrameTime=performance.now(),frameCount=0,telemetryReq;
 window.toggleTelemetry=function(){telemetryActive=!telemetryActive;var btn=document.getElementById('btn-toggle-telemetry');var out=document.getElementById('telemetry-output');if(telemetryActive){btn.textContent="Stop Live Profiler";btn.classList.add('danger');out.style.display='block';lastFrameTime=performance.now();frameCount=0;updateTelemetry();window.addConsoleLog('log','Live Performance Profiler started.');}else{btn.textContent="Start Live Profiler";btn.classList.remove('danger');out.style.display='none';cancelAnimationFrame(telemetryReq);window.addConsoleLog('warn','Live Performance Profiler stopped.');}};
 function updateTelemetry(){if(!telemetryActive)return;var now=performance.now();frameCount++;if(now-lastFrameTime>=1000){var fps=Math.round((frameCount*1000)/(now-lastFrameTime));var fpsEl=document.getElementById('fps-display');fpsEl.textContent='FPS: '+fps;fpsEl.style.color=fps>=50?'#00ff00':(fps>=30?'#f7b928':'#e41e3f');frameCount=0;lastFrameTime=now;var memEl=document.getElementById('mem-display');if(performance.memory){var mem=Math.round(performance.memory.usedJSHeapSize/1048576);var totalMem=Math.round(performance.memory.jsHeapSizeLimit/1048576);memEl.textContent='JS Heap: '+mem+' MB / '+totalMem+' MB';}else{memEl.textContent='JS Heap: API Not Supported';}}telemetryReq=requestAnimationFrame(updateTelemetry);}
 
-// Google Forms Extractor Logic
 window.extractGFormParams = function() {
   var urlInput = document.getElementById('gform-url-input').value.trim();
   var urlToParse = urlInput ? urlInput : window.location.href; // Uses pasted URL, or defaults to current page
@@ -4113,7 +4075,7 @@ if(toolbarBtn){toolbarBtn.addEventListener('click',function(){toggleDevTools();}
 
 <script>
 // ============================================
-// DV Ministry Guardian - Client Widget v2.1
+// DV Ministry Guardian 
 // Proprietary Software
 // Copyright (c) 2026 Rev. Don Victor, PhD
 // All rights reserved.
@@ -5060,8 +5022,6 @@ if(toolbarBtn){toolbarBtn.addEventListener('click',function(){toggleDevTools();}
       setTimeout(() => p.remove(), (dur + 0.9) * 1000);
     }
   }
-
-  /* ══ PUZZLE LOGIC ══ */
   var DV_BIBLE_GAME_SOLVED = ['J','E','S','U','S','\u271D','\u271D','\u271D',null];
   
   function dvBibleGameIdxToRC(i){ 
@@ -5125,7 +5085,6 @@ if(toolbarBtn){toolbarBtn.addEventListener('click',function(){toggleDevTools();}
     }
   }
 
-  /* ══ BINDINGS ══ */
   dvBibleGameWidgetGetEl('dv-bible-game-widget-btn-sound').addEventListener('click', function(){ 
     DV_BIBLE_GAME_STATE.soundOn = !DV_BIBLE_GAME_STATE.soundOn; 
     this.classList.toggle('dv-bible-game-widget-on', DV_BIBLE_GAME_STATE.soundOn); 
